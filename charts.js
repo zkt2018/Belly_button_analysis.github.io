@@ -195,10 +195,8 @@ function buildCharts(sample) {
     // // Create a variable that holds the first sample in the array.
     // // 2. Create a variable that holds the first sample in the metadata array.
     var firstsample = resultArray[0];
-    //var firstWfreq = firstsample.wfreq;
-    var metadataArray = data.metadata.filter(sampleObj => sampleObj.id == sample);
-    met_data = metadataArray[0]
-    var frequency = parseFloat(met_data.wfreq);
+    
+   
    
     // Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_ids = firstsample.otu_ids;
@@ -207,7 +205,10 @@ function buildCharts(sample) {
 
 
     // 3. Create a variable that holds the washing frequency.
-    //var wfreq = parseFloat(firstSample.wfreq);
+    var metadataArray = data.metadata.filter(sampleObj => sampleObj.id == sample);
+    met_data = metadataArray[0]
+    var frequency = parseFloat(met_data.wfreq);
+  
   
     
     // Create the yticks for the bar chart.
