@@ -195,8 +195,8 @@ function buildCharts(sample) {
     // Create a variable that holds the first sample in the array.
     // 2. Create a variable that holds the first sample in the metadata array.
     var firstsample = resultArray[0];
-    var firstWfreq = resultArray[0].wfreq;
-
+    //var firstWfreq = firstsample.wfreq;
+   
     // Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_ids = firstsample.otu_ids;
     var otu_labels = firstsample.otu_labels;
@@ -204,7 +204,7 @@ function buildCharts(sample) {
 
 
     // 3. Create a variable that holds the washing frequency.
-    var washingFreq = parseFloat(resultArray.wfreq);
+    var wfreq = data.metadata.map(person => person.wfreq);
     
     // Create the yticks for the bar chart.
     var yticks =  otu_ids.slice(0,10).map(otuId => `OTU ${otuId}`).reverse();
@@ -262,13 +262,14 @@ function buildCharts(sample) {
     var gaugeData = [
       {
         domain: { x: [0, 1], y: [0, 1] },
-        value: washingFreq,
+        value: wfreq,
         title: { text: "<b>Belly Button Washing Frequency</b> <br> Scrubs per Week"},
         type: "indicator",
         mode: "gauge+number",
-        //delta: { reference: 380 },
+       
         gauge: {
-          axis: { range: [null, 10] },
+          axis: { range: [null, 10], tickwidth: 1, tickcolor: "black" },
+          bar: { color: "black" },
           steps: [
             { range: [0, 2], color: "red" },
             { range: [2, 4], color: "orange" },
@@ -276,11 +277,7 @@ function buildCharts(sample) {
             { range: [6, 8], color: "lawngreen" },
             { range: [8, 10], color: "green" }
           ],
-          threshold: {
-            line: { color: "red", width: 4 },
-            thickness: 0.75,
-            value: firstWfreq
-          }
+        
         }
       }
     ];
